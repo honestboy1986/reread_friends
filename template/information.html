@@ -1,0 +1,27 @@
+<%inherit file="base.html"/>
+<%block name="concent">
+<h3 style="blue">个人资料</h3>
+<p>email:
+%if email:
+     ${email}<br/>
+</p>
+<form action="change_information" method="post">
+姓名:
+%if n:
+   %for i in n: 
+<input type="text" value=" ${i.name}">
+    %endfor
+<p>密码：<input type="password" value="$n.password"></p>
+%endif
+%endif
+
+<p>电话:<input type="text" name="phonenumber">
+</p>
+<p>
+住址：<input type="text" name="address">
+</p>
+<input type="submit" value="修改">
+</form>
+<a href="/xiongdihui">我的微博</a>
+<hr/>
+</%block>

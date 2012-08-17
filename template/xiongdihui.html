@@ -1,0 +1,21 @@
+<%inherit file="base.html"/>
+<%block name="concent">
+${name}
+<h1 style="color:red">欢迎进入兄弟会微博！</h1>
+<a href="/information">个人信息</a>
+<a href="/fans">我的好友</a>
+<a href="/exit">退出</a>
+<p>写微博</p>
+<form action="/weibo_action" method="post">
+<textarea name="weibo" cols="50" rows="4" ></textarea>
+<input type="submit" value="发表">
+</form>
+<h1>微博动态</h1>
+% if weibo_action:
+     % for i in weibo_action:
+          ${i.email}<br/>
+          ${i.content}<br/>
+          ${i.f_time}<br/><hr/>
+     % endfor
+% endif
+</%block>

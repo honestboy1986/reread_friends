@@ -1,0 +1,16 @@
+<%inherit file="base.html"/>
+<%block name="concent">
+<h1>好友列表</h1><hr/>
+<a href="/xiongdihui">我的微博</a>
+<br/>
+% if users and f_content:
+    % for i in users:
+           <h2 style="color:blue"> ${i.name}</h2>
+           % for c in f_content: 
+                %if i.email==c.email:
+                    ${c.content}<hr/>
+                %endif
+           % endfor 
+    % endfor<br/>
+% endif
+</%block>
