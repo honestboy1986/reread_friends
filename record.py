@@ -47,17 +47,18 @@ def edit_friends():
                 start()
     else:
         print "此用户不存在！"
-def change_name(a):
+def change_name(i):
     name[i] = raw_input("输入新的用户名：")
-def change_tele(a):
+    f.write(str(name))
+def change_tele(j):
     new_t = raw_input("输入新的用户电话：")
     re_tele = raw_input("重新输入新的用户电话：")
     if new_t == re_tele:
-        tele[i] = re_tele
+        tele[j] = re_tele
 def change_qqnum(a):
     old_qq = raw_input("输入旧的qq号码：")
-    if qqnum[i] == old_qq:
-        qqnum[i] = raw_input("输入新的qq号码：")
+    if qqnum[a] == old_qq:
+        qqnum[a] = raw_input("输入新的qq号码：")
         f.write(str(qqnum))        
         
 def find_friends():
