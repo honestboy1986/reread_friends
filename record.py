@@ -3,9 +3,9 @@ from sys import argv, exit
 import os
 script, tongxunlu = argv
 f = open(tongxunlu, 'w+')
-name = evil("[f.readline()]")
-tele = evil("[f.readline()]")
-qqnum = evil("[f.readline()]")
+name = eval("[f.readline()]")
+tele = eval("[f.readline()]")
+qqnum = eval("[f.readline()]")
 def add_friends():
     f = open(tongxunlu, 'w+')
     new_friends = raw_input("请输入新的联系人：")
