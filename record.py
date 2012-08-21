@@ -3,9 +3,9 @@ from sys import argv, exit
 import os
 script, tongxunlu = argv
 f = open(tongxunlu, 'w+')
-name = []
-tele = []
-qqnum = []  
+name = evil("[f.readline()]")
+tele = evil("[f.readline()]")
+qqnum = evil("[f.readline()]")
 def add_friends():
     f = open(tongxunlu, 'w+')
     new_friends = raw_input("请输入新的联系人：")
@@ -53,7 +53,7 @@ def change_tele(r):
     if new_t == re_tele:
         tele[r] = re_tele
         print "修改到文件！！！！！！！！！！save_tele()"
-        change_qqnum(r)
+        start()
     else:
         print "两次输入不一样！请重新输入"
         change_tele(r)
@@ -64,7 +64,7 @@ def change_qqnum(r):
         new_qq = raw_input("输入新的qq号码：")
         print "修改成功 新的qq号码为 %s" % new_qq
     elif q == "n":
-        edit_friends()
+        start()
     if qqnum[a] == old_qq:
         qqnum[a] = raw_input("输入新的qq号码：")
         print "修改到文件！！！！！！！！！！！！！！save_qqnum()"       
@@ -111,10 +111,16 @@ def save_friends(name,tele,qqnum):
     qqnum = qqnum
     f = open(tongxunlu,"w+")
     f.write(str(name))
+    f.write("\n")
     f.write(str(tele))
+    f.write("\n")
     f.write(str(qqnum))
+    f.write("\n")
     f.close()
     print "信息已保存！"
+    f = open(tongxunlu, "r")
+    print f.read()
+    f.close()
     start()
 def all_friends():
     print "print all name here!"
@@ -141,6 +147,7 @@ def start():
         edit_friends()
     elif a == "help":
         print "输入菜单中的命令即可操作文件!"
+        start()
     elif a == "find":
         find_friends()
     elif a == "remove":
