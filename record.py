@@ -15,7 +15,7 @@ def add_friends():
     new_friends = raw_input("请输入新的联系人：")
     if new_friends in name:
         print "该用户名已被占用！"
-        start()
+        add_friends()
     name.append(new_friends)
     new_telephone = raw_input("请输入电话号码：")
     tele.append(new_telephone)
@@ -29,48 +29,49 @@ def edit_friends():
             if name[i] == edit: 
                 r = i            
                 change_name(r)
-                change_tele(r)
     else:
         print "此用户不存在！"
         edit_friends()
 def change_name(r):
-    a = r
-    n = raw_input("是否修改此用户名：y/n")
+    n = raw_input("是否修改此用户名:(Y/N)")
     if n == "y":
-        name[a] = raw_input("输入新的用户名：")
+        name[r] = raw_input("输入新的用户名：")
         print "修改到文件！！！！！！！！！！！save_name()"
+        change_tele(r)
     elif n =="n":
         change_tele(r)
     else:
-        print "输入错误！！！"
+        print "输入错误！！！请从新输入"
+        change_name(r)
 def change_tele(r):
-    a = r
     t = raw_input("是否更改用户电话:(Y/N)")
     if t == "y":
         new_t = raw_input("输入新的用户电话：")
         re_tele = raw_input("重新输入新的用户电话：")
+        if new_t == re_tele:
+            tele[r] = re_tele
+            print "修改成功 。。。。。。。。"
+            change_qqnum(r)
+        else:
+            print "两次输入不同！"
+            change_tele()   
     elif t =="n":
         change_qqnum(r)
     else:
-        print "type error!"
-    if new_t == re_tele:
-        tele[r] = re_tele
-        print "修改到文件！！！！！！！！！！save_tele()"
-        change_qqnum(r)
-    else:
-        print "两次输入不一样！请重新输入"
+        print "输入错误 请从新输入！！"
         change_tele(r)
 def change_qqnum(r):
-    a = r
     q = raw_input("是否更改用户qq：(Y/N)")
     if q == "y":
         new_qq = raw_input("输入新的qq号码：")
-        print "修改成功 新的qq号码为 %s" % new_qq
+        qqnum[r] = new_qq
+        print "修改到文件 新的qq号码为 %s" % qqnum[r]
+        start()
     elif q == "n":
         start()
-    if qqnum[a] == old_qq:
-        qqnum[a] = raw_input("输入新的qq号码：")
-        print "修改到文件！！！！！！！！！！！！！！save_qqnum()"       
+    else:
+        print "输入错误 请从新输入！！"
+        change_qqnum(r)       
         
 def find_friends():
     find = raw_input("请输入用户名,密码，或qq：")
@@ -91,23 +92,11 @@ def remove_friends():
                 name.remove(name[i])
                 tele.remove(tele[i])
                 qqnum.remove(qqnum[i])
-                save_friends(name,tele,qqnum)
                 print "删除%s的所有信息！" %s
                 start()
-    elif re == "quit":
-        start()
     else:
         print "输入的用户名不存在！"  
         start()
-def save_name(name):
-    name = name
-    start()
-def save_tele(tele):
-    tele = tele
-    start()
-def save_qqnum(qqnum):
-    qqnum = qqnum
-    start()    
 def save_friends(name,tele,qqnum):
     f = open(tongxunlu,"w")
     f.write(str(name))
@@ -117,16 +106,24 @@ def save_friends(name,tele,qqnum):
     f.write(str(qqnum))
     f.close()
     print "信息已保存！"
-    f = open(tongxunlu, "r")
-    print f.read()
     f.close()
     start()
 def all_friends():
     print "print all name here!"
     f = open(tongxunlu,"r")
-    print f.read()
-    f.close()
-    start()
+    n = f.read().split("\n")
+    print n[0]
+    a = raw_input("查看所有信息！！（Y/N）")
+    if a == "y":
+        print n[0]
+        print n[1]
+        print n[2]
+        f.close()
+        start()
+    else:
+        print "继续操作！"
+        f.close()
+        start()
 
 print """
 +******************操作菜单****************+
