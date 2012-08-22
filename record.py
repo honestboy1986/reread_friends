@@ -2,12 +2,11 @@
 from sys import argv, exit
 import os
 script, tongxunlu = argv
-f = open(tongxunlu, 'w+')
+f = open(tongxunlu, 'r')
 name = eval("[f.readline()]")
 tele = eval("[f.readline()]")
 qqnum = eval("[f.readline()]")
 def add_friends():
-    f = open(tongxunlu, 'w+')
     new_friends = raw_input("请输入新的联系人：")
     if new_friends in name:
         print "该用户名已被占用！"
@@ -17,8 +16,7 @@ def add_friends():
     tele.append(new_telephone)
     qqnumber = raw_input("请输入qq号码：")
     qqnum.append(qqnumber)
-    save_friends(name,tele,qqnum)
-        
+    start()    
 def edit_friends():
     edit = raw_input("输入要编辑的用户名：")
     if edit in name:
@@ -106,10 +104,7 @@ def save_qqnum(qqnum):
     qqnum = qqnum
     start()    
 def save_friends(name,tele,qqnum):
-    name = name
-    tele = tele
-    qqnum = qqnum
-    f = open(tongxunlu,"w+")
+    f = open(tongxunlu,"w")
     f.write(str(name))
     f.write("\n")
     f.write(str(tele))
