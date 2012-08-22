@@ -3,9 +3,14 @@ from sys import argv, exit
 import os
 script, tongxunlu = argv
 f = open(tongxunlu, 'r')
-name = eval("[f.readline()]")
-tele = eval("[f.readline()]")
-qqnum = eval("[f.readline()]")
+arr = f.read().split("\n")
+name = []
+tele = []
+qqnum = []
+if len(arr) == 3:
+    name = eval(arr[0])
+    tele = eval(arr[1])
+    qqnum = eval(arr[2])
 def add_friends():
     new_friends = raw_input("请输入新的联系人：")
     if new_friends in name:
@@ -51,7 +56,7 @@ def change_tele(r):
     if new_t == re_tele:
         tele[r] = re_tele
         print "修改到文件！！！！！！！！！！save_tele()"
-        start()
+        change_qqnum(r)
     else:
         print "两次输入不一样！请重新输入"
         change_tele(r)
@@ -110,7 +115,6 @@ def save_friends(name,tele,qqnum):
     f.write(str(tele))
     f.write("\n")
     f.write(str(qqnum))
-    f.write("\n")
     f.close()
     print "信息已保存！"
     f = open(tongxunlu, "r")
