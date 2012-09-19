@@ -121,7 +121,7 @@ def all_friends():
         f.close()
         start()
     else:
-        print "继续操作！"
+        print "继续操作...！"
         f.close()
         start()
 
