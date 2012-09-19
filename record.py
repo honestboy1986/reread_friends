@@ -87,12 +87,12 @@ def find_friends():
 def remove_friends():
     re = raw_input("请输入要删除的用户名：")
     if re in name:
-        for i in (0,int(len(name))):
+        for i in range(0,int(len(name))):
             if name[i] == re:
                 name.remove(name[i])
                 tele.remove(tele[i])
                 qqnum.remove(qqnum[i])
-                print "删除%s的所有信息！" %s
+                print "删除%s的所有信息！,请保存修改。" % re
                 start()
     else:
         print "输入的用户名不存在！"  
